@@ -1,0 +1,14 @@
+<form>
+  {{#each allOrders}}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Номер заказа: {{this.num}}</h5>
+    <p class="card-text">Комментарий администратора: {{this.comments}}</p>
+    <p class="card-text">Номер бригады: {{this.wgId}}</p>
+
+
+    <button type="submit" class="btn btn-primary">Сменить статус</button>
+  </div>
+</div>
+{{/each}}
+</form>

@@ -1,0 +1,35 @@
+<form id="adminForm">
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Номер заказа</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="num" placeholder="номер">
+</div>
+
+
+<div class=>
+  <label for="formFileMultiple" class="form-label">Прикрепить</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple>
+</div>
+
+<div class="mb-3">
+  <label for="textarea" class="form-label">Комментарий</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" name="comments" rows="3"></textarea>
+</div>
+
+<select name="wgId" class="form-select" aria-label="Default select example">
+  <option selected>Выбор бригады</option>
+
+    {{#each groupName}}
+      <option value="{{this.groupname}}">{{this.groupname}}</option>
+    {{/each}} 
+
+</select>
+
+
+
+<button type="submit" class="btn btn-primary">Primary</button>
+
+</form>
+
+<script defer src="/js/newOrder.js"></script>
+
+

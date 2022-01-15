@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Workgroup.init({
-    groupname: DataTypes.STRING,
+    groupname: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Workgroup',

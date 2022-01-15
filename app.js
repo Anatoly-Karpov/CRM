@@ -11,6 +11,7 @@ const sha256 = require('sha256');
 const { helloMiddleware } = require('./middleware/allMiddleWare');
 const indexRouter = require('./routes/indexRouter');
 const usersRouter = require('./routes/userRouter');
+const adminRouter = require('./routes/adminRouter');
 
 const app = express();
 const PORT = 3000;
@@ -36,10 +37,12 @@ app.use(session({
   name: 'auth',
 }));
 // End middleware section
-app.use(helloMiddleware)
+app.use(helloMiddleware);
 // Start routes section
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
+
 // End routes section
 
 app.listen(process.env.PORT ?? 3000, () => {

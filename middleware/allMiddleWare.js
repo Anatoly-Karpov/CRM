@@ -10,12 +10,25 @@
 const helloMiddleware = (req, res, next) => {
   res.locals.name = req.session?.name;
   res.locals.user_id = req.session?.user_id;
+  if(req.session.role_id == 1){
+
+    res.locals.roleId = req.session.role_id;
+  }
+  next();
+};
+
+const checkAdmin = (res, req, next) => {
+  if(req.session.role_id) {
+
+
+  res.locals.admin = req.session.role_id;
+}
   next();
 };
 
 module.exports = {
   helloMiddleware,
-
+  checkAdmin,
 };
 
 // const welcomeUser = (req, res, next) => {
