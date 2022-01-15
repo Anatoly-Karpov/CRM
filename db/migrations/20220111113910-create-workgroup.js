@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       groupname: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

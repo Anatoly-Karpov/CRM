@@ -6,22 +6,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Дом</a>
-        </li>
 
+              
         {{#if name}} 
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="/users/logout">Выйти</a>
         </li>
-        <li>
-            <a class="nav-link" href="/orders/add">Администратор</a>
-        </li>
-         <li>
-            <a class="nav-link" href="/users/{{user_id}}">Мой профиль</a> 
-        </li>
         {{else}}
-
         <li class="nav-item">
           <a class="nav-link" href="/users/register">Регистрация</a>
         </li>
@@ -29,6 +20,20 @@
           <a class="nav-link" href="/users/login">Войти</a>
         </li>
         {{/if}}
+        {{#if roleId}} 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin">Заказы</a>
+        </li>
+        
+         <li>
+            <a class="nav-link" href="/admin/assign">Бригады</a> 
+        </li>
+        {{else}} 
+         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/users/profile">Профиль</a>
+        </li>
+        {{/if}} 
+
 
 
       </ul>

@@ -1,12 +1,11 @@
-const { resolveAny } = require('dns');
 const express = require('express');
 
 const router = express.Router();
 const sha256 = require('sha256');
 
-const { User } = require('../db/models');
+const { User, Order } = require('../db/models');
 
-const { helloMiddleware, checkAdmin } = require('../middleware/allMiddleWare');
+const { helloMiddleware } = require('../middleware/allMiddleWare');
 
 // create user
 router.get('/register', (req, res) => {
@@ -23,11 +22,7 @@ router.post('/register', async (req, res) => {
   req.session.name = user.name;
   req.session.user_id = user.id;
   req.session.role_id = user.roleId;
-  // const newUser = {
-  //   name: user.name,
-  //   email: user.email,
 
-  // }
 
   res.sendStatus(200);
 });
@@ -46,16 +41,14 @@ router.post('/login', async (req, res) => {
       req.session.name = user.name;
       req.session.user_id = user.id;
       req.session.role_id = user.roleId;
-      console.log('>>>>>>>>>>>>>>', req.session.user_id);
+      res.locals.admin = true;
       return res.sendStatus(200);
     }
   } else {
     if (user.password === sha256(password)) {
-      console.log(user.roleId);
       req.session.name = user.name;
       req.session.user_id = user.id;
       req.session.role_id = user.roleId;
-      console.log(req.session.user_id);
       return res.sendStatus(201);
     }
 
@@ -72,10 +65,16 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+// отрисовка страницы
 router.get('/', async (req, res) => {
-  const user = await User.findByPk(req.session.user_id);
-  // console.log('=>>>>>>>>>>>>>>>>>>>>>>>>>>', req.params.id);
-  res.render('workerPage');
+  const allOrders = await Order.findAll({ raw: true });
+
+  res.render('workerPage', { allOrders });
+});
+
+router.get('/profile', async (req, res) => {
+  const user = await User.findOne({ where: { id: req.session.user_id } });
+  res.render('workerProfile', { user: user.dataValues });
 });
 
 module.exports = router;

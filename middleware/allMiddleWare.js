@@ -10,24 +10,25 @@
 const helloMiddleware = (req, res, next) => {
   res.locals.name = req.session?.name;
   res.locals.user_id = req.session?.user_id;
-  // res.locals.roleId =
+  if(req.session.role_id == 1){
+
+    res.locals.roleId = req.session.role_id;
+  }
   next();
 };
 
-// const checkAdmin = (res, req, next) => {
-//   // res.locals.role_id = 1
-//   // console.log(res.locals.role_id);
-//   if (res.session.role_id === 1) {
-//     next();
-//   } else {
-//     // res.redirect('/')
-//     alert('pain');
-//   }
-// };
-// const admin
+const checkAdmin = (res, req, next) => {
+  if(req.session.role_id) {
+
+
+  res.locals.admin = req.session.role_id;
+}
+  next();
+};
+
 module.exports = {
   helloMiddleware,
-  // checkAdmin,
+  checkAdmin,
 };
 
 // const welcomeUser = (req, res, next) => {

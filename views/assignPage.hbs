@@ -1,0 +1,27 @@
+<h1>Назначение бригады</h1>
+
+
+<form name="assignForm">
+  {{#each user }}
+<div class="card workdiv" data-assignId="{{this.id}}">
+  <div class="card-body">
+    <h5 class="card-title">Имя: {{this.name}}</h5>
+    <p class="card-text"> Почта: {{this.email}}</p>
+    <p class="card-text">Номер бригады: {{this.workgroupId}}</p>
+
+<select name="wgNum" class="form-select" id="{{this.id}}" aria-label="Default select example">
+  <option selected>Номер бригады</option>
+    {{#each ../groupName}}
+      <option value="{{this.groupname}}">{{this.groupname}}</option>
+    {{/each}} 
+
+</select>
+
+    <button type="submit" data-id="{{this.id}}" class="btn btn-primary">Назначить</button>
+  </div>
+</div>
+{{/each}}
+
+</form>
+
+<script defer src="/js/assign.js"></script>

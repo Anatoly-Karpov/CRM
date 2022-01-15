@@ -1,11 +1,9 @@
 const { regForm } = document.forms;
-console.log(regForm);
 
 regForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const formData = Object.fromEntries(new FormData(event.target));
-  console.log(formData);
   formData.roleId = 2;
   const res = await fetch('/users/register', {
     method: 'POST',
@@ -16,7 +14,7 @@ regForm.addEventListener('submit', async (event) => {
   });
 
   if (res.ok) {
-    window.location.assign('/')
+    window.location.assign('/users')
   } else {
     alert('Error')
   }
