@@ -4,4 +4,4 @@
 заполонить файл env-example 
 для запуска npm start
 
-<img src="https://imgur.com/r9aqs5o.gif" width="300px"/>
+<img src="https://imgur.com/r9aqs5o.gif" width="500px"/>
